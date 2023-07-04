@@ -41,7 +41,6 @@ class FoodsController < ApplicationController
       render :edit
     end
   end
-  
 
   # DELETE /foods/1 or /foods/1.json
   def destroy

@@ -1,29 +1,29 @@
-<h2>Add Food</h2>
+<!-- app/views/foods/new.html.erb -->
 
-<div class="container">
-<%= form_with model: Food.new, url: foods_path do |f| %>
+<h1>Add Food</h1>
+
+<%= form_with model: @food, url: foods_path do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= form.label :measurement_unit %>
+    <%= form.text_field :measurement_unit %>
   </div>
 
   <div class="field">
-    <%= f.label :measurement_unit %><br />
-    <%= f.text_field :measurement_unit, autofocus: true %>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
   </div>
 
-    <div class="field">
-    <%= f.label :quantity %><br />
-    <%= f.number_field :quantity, autofocus: true %>
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
   </div>
 
-    <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price, autofocus: true %>
-  </div>
   <div class="actions">
-    <%= f.submit "Add" %>
+    <%= form.submit %>
   </div>
 <% end %>
-</div>

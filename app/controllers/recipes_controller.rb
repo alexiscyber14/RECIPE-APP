@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @foods = Food.joins(:food_recipes).where(food_recipes: { recipe_id: params[:id] }).where(user_id: current_user.id)
+    @food = Food.accessible_by(current_ability)
   rescue ActiveRecord::RecordNotFound
     # Catch the error if the record is not found and return an empty array
     @foods = []
@@ -73,6 +74,36 @@ class RecipesController < ApplicationController
     # else
     #   render :show, notice: "An error occured"
   end
+
+  def generate_shopping_list
+    @foods = Food.where(user_id: current_user.id) # Retrieve the user's food items
+    @shopping_list = @foods # Extract only the food names from the foods
+  
+    respond_to do |format|
+      format.html { render :generate_shopping_list } # Create a corresponding view file
+      format.json { render json: @shopping_list }
+    end
+  end
+  
+  
+  
+  
+  
+=begin
+  def generate_shopping_list
+    @food = Food.accessible_by(current_ability)
+    @recipe = Recipe.find(params[:id])
+    # Add your logic here to generate the shopping list based on the recipe
+    # For now, let's assume the shopping list is stored in an instance variable called @shopping_list
+    @shopping_list = @food.generate_shopping_list
+  
+    # Render or redirect as needed
+    respond_to do |format|
+      format.html { render :generate_shopping_list } # Create a corresponding view file
+      format.json { render json: @shopping_list }
+    end
+  end
+=end
 
   private
 

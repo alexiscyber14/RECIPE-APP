@@ -1,21 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/food_recipes/index.html.erb -->
 
-<h1>Foods</h1>
+<h1>Food Recipes</h1>
+<%= link_to "Add Food", new_food_path, class: "btn btn-primary" %>
+<p>Number of Foods: <%= @food_count %></p>
+<p>Total Food Cost: <%= @food_cost %></p>
 
- <div class="new_food_wrapper">
-    <%= link_to "Add New Food", new_food_path, class: 'new_food' %>
-  </div>
-<div class="grid-container">
-    <div class="grid-item"><strong>Food</strong></div>
-    <div class="grid-item"><strong>Measurement Unit</strong></div>
-    <div class="grid-item"><strong>Unit Price</strong></div>
-    <div class="grid-item"><strong>Quantity</strong></div>
-    <div class="grid-item"><strong>Actions</strong></div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Measurement Unit</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @foods.each do |food| %>
-    <div class="grid-item"><%= food.name%></div>
-    <div class="grid-item"><%= food.measurement_unit%></div>
-    <div class="grid-item">$<%= food.price%></div>
-    <div class="grid-item"><%= food.quantity%><%=food.measurement_unit%></div>
-    <div class="grid-item last"><%= button_to "Edit", edit_food_path(food.id), method: :get, class: 'edit_btn' %>|<%= button_to "Delete", food_path(food.id), method: :delete, class: 'delete_btn' %></div>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td><%= food.quantity %></td>
+        <td>
+          <%= button_to "Delete", food, method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
     <% end %>
-  </div>
+  </tbody>
+</table>
+

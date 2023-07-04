@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   get 'recipe_foods/create'
   get 'recipe_foods/edit'
   get 'recipe_foods/destroy'
-  resources :recipes
+  resources :recipes do
+    get 'generate_shopping_list', on: :member
+  end
   resources :public_recipes
   resources :users
-  resources :foods, except: [:update]
-  get 'recipes/:id/food_recipes/new', to: 'food_recipes#new', as: 'new_food_recipe'
-  post 'recipes/:id/food_recipes/', to: 'food_recipes#create', as: 'food_recipes'
-  get 'general_shopping_list', to: 'food_recipes#index', as: 'general_shopping_list'
-  put 'recipes/:id/toggle_button', to: 'recipes#toggle_action', as: 'toggle_action'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :foods
+  #get 'recipes/:id/food_recipes/new', to: 'food_recipes#new', as: 'new_food_recipe'
+  #post 'recipes/:id/food_recipes/', to: 'food_recipes#create', as: 'food_recipes'
+  #get 'general_shopping_list', to: 'food_recipes#index', as: 'general_shopping_list'
+  #put 'recipes/:id/toggle_button', to: 'recipes#toggle_action', as: 'toggle_action'
+  
+  
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

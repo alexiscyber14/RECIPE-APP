@@ -1,28 +1,22 @@
-<div>
-  <h1>Public Recipes</h1>
-
-  <div id="recipes">
-    <% if @recipes.empty? %>
-      <p class="">No recipes available! </p>
-    <% else %>
-      <% @recipes.each do |recipe| %>
-        <div class="a">
-          <div class="one">
-            <p><%= recipe.name %></p>
-            <% if can? :delete, recipe %>
-              <%= button_to "Destroy this recipe", recipe, method: :delete %>
-            <% end %>
-            <p>
-            <%= link_to "Show", recipe %>
-          </p>
-            </div>
-            
-          <div>
-            <p><%= recipe.description %></p>
-          </div>
-          
-    </div>
-      <% end %>
-  <% end %>
-  </div>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Recipe</th>
+      <th>User</th>
+      <th>Number of Foods</th>
+      <th>Total Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.user.name %></td>
+        <td><%= recipe.user.foods.count %></td>
+        <td><%= recipe.user.foods.sum(:price) %></td>
+        <td><%= link_to 'Details', recipe_path(recipe) %></td>
+        <td><%= link_to 'Foods', foods_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

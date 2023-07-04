@@ -31,3 +31,5 @@ end
 
 gem 'cancancan'
 gem 'devise', '~> 4.9'
+gem 'jquery-rails', '~> 4.6'
+gem 'rails-ujs', '~> 0.1.0'

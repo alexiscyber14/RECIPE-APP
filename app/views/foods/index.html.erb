@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Foods</h1>
+
+ <div class="new_food_wrapper">
+    <%= link_to "Add New Food", new_food_path, class: 'new_food' %>
+  </div>
+<div class="grid-container">
+    <div class="grid-item"><strong>Food</strong></div>
+    <div class="grid-item"><strong>Measurement Unit</strong></div>
+    <div class="grid-item"><strong>Unit Price</strong></div>
+    <div class="grid-item"><strong>Quantity</strong></div>
+    <div class="grid-item"><strong>Actions</strong></div>
+    <% @foods.each do |food| %>
+    <div class="grid-item"><%= food.name%></div>
+    <div class="grid-item"><%= food.measurement_unit%></div>
+    <div class="grid-item">$<%= food.price%></div>
+    <div class="grid-item"><%= food.quantity%><%=food.measurement_unit%></div>
+    <div class="grid-item last"><%= button_to "Edit", edit_food_path(food.id), method: :get, class: 'edit_btn' %>|<%= button_to "Delete", food_path(food.id), method: :delete, class: 'delete_btn' %></div>
+    <% end %>
+  </div>

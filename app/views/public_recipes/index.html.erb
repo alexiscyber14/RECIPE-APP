@@ -1,0 +1,28 @@
+<div>
+  <h1>Public Recipes</h1>
+
+  <div id="recipes">
+    <% if @recipes.empty? %>
+      <p class="">No recipes available! </p>
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <div class="a">
+          <div class="one">
+            <p><%= recipe.name %></p>
+            <% if can? :delete, recipe %>
+              <%= button_to "Destroy this recipe", recipe, method: :delete %>
+            <% end %>
+            <p>
+            <%= link_to "Show", recipe %>
+          </p>
+            </div>
+            
+          <div>
+            <p><%= recipe.description %></p>
+          </div>
+          
+    </div>
+      <% end %>
+  <% end %>
+  </div>
+</div>

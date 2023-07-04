@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: recipe_app
+  database: recipe
   host: localhost
   username: postgres
   password: Starshine96
@@ -27,7 +27,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: recipe_app
+  database: recipe
   host: localhost
   username: postgres
   password: Starshine96
@@ -36,7 +36,7 @@ test:
 
 production:
   <<: *default
-  database: recipe_app
+  database: recipe
   host: localhost
   username: postgres
   password: Starshine96

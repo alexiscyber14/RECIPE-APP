@@ -9,12 +9,15 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @foods = Food.joins(:food_recipes).where(food_recipes: { recipe_id: params[:id] }).where(user_id: current_user.id)
-    @food = Food.accessible_by(current_ability)
-  rescue ActiveRecord::RecordNotFound
-    # Catch the error if the record is not found and return an empty array
-    @foods = []
+    begin
+      @recipe = Recipe.find(params[:id])
+      @foods = @recipe.foods
+    rescue ActiveRecord::RecordNotFound
+      # Catch the error if the record is not found and return an empty array
+      @foods = []
+    end
   end
+  
 
   # GET /recipes/new
   def new
@@ -26,20 +29,21 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @create_recipe = recipe_params.merge(user_id: current_user.id)
-    # @modify_public = params[:recipe][:public] = recipe_params[:public].to_i.zero? ? false : true
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
-    @recipe[:public] = @recipe[:public] != '0'
+    @recipe.public = (@recipe.public != '0')
+  
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to recipes_path, notice: 'Recipe was successfully created.' }
+        format.json { render :show, status: :created, location: @recipe }
+        @recipe.food_recipes.where(quantity: nil).destroy_all
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
   end
-
+  
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
     respond_to do |format|
@@ -75,36 +79,22 @@ class RecipesController < ApplicationController
     #   render :show, notice: "An error occured"
   end
 
-  def generate_shopping_list
-    @foods = Food.where(user_id: current_user.id) # Retrieve the user's food items
-    @shopping_list = @foods # Extract only the food names from the foods
-  
-    respond_to do |format|
-      format.html { render :generate_shopping_list } # Create a corresponding view file
-      format.json { render json: @shopping_list }
-    end
-  end
-  
-  
-  
-  
-  
-=begin
-  def generate_shopping_list
-    @food = Food.accessible_by(current_ability)
-    @recipe = Recipe.find(params[:id])
-    # Add your logic here to generate the shopping list based on the recipe
-    # For now, let's assume the shopping list is stored in an instance variable called @shopping_list
-    @shopping_list = @food.generate_shopping_list
-  
-    # Render or redirect as needed
-    respond_to do |format|
-      format.html { render :generate_shopping_list } # Create a corresponding view file
-      format.json { render json: @shopping_list }
-    end
-  end
-=end
+# recipes_controller.rb
 
+# recipes_controller.rb
+
+# recipes_controller.rb
+
+def generate_shopping_list
+  @recipe = Recipe.find(params[:id])
+  @food_recipes = @recipe.food_recipes.includes(:food).where.not(quantity: nil) # Retrieve food_recipes with non-nil quantities and include associated food records
+  @total_cost = @food_recipes.sum { |food_recipe| food_recipe.quantity.to_i * food_recipe.food.price.to_i }
+  @item_count = @food_recipes.size
+end
+
+
+
+  
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -112,8 +102,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :preparation_time, :cooking_time, :public)
+    params.require(:recipe).permit(
+      :name, :description, :preparation_time, :cooking_time, :public,
+      food_recipes_attributes: [:id, :food_id, :quantity,:food_ids, :_destroy]
+    )
   end
+  
+  
+  
 end

@@ -1,26 +1,13 @@
-<h1>Shopping List</h1>
-<p>Number of Foods: <%= @shopping_list.size %></p>
-<p>Total Price: <%= @shopping_list.sum(&:price) %></p>
+<!-- generate_shopping_list.html.erb -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Measurement Unit</th>
-      <th>Price</th>
-      <th>Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @shopping_list.each do |food| %>
-      <tr>
-        <td><%= food.name %></td>
-        <td><%= food.measurement_unit %></td>
-        <td>$<%= food.price %></td>
-        <td><%= food.quantity %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Shopping List for <%= @recipe.name %></h2>
 
-<%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+<ul>
+  <% @food_recipes.each do |food_recipe| %>
+    <p>Food: <%=food_recipe.food.name%> </p>
+    <p>Quantity: <%=food_recipe.quantity%></p>
+    <p>Price: <%=food_recipe.food.price%></p>
+  <% end %>
+</ul>
+<p>Total Cost: $<%= @total_cost %></p>
+<p>Number of Items: <%= @item_count %></p>

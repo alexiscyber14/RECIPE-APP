@@ -25,6 +25,25 @@
     <%= f.label :public %>
     <%= f.check_box :public %>
   </div>
+  <h2>Foods</h2>
+  <% Food.accessible_by(current_ability).each do |food| %>
+    <div class="field">
+      <% existing_food_recipe = @recipe.food_recipes.find_by(food_id: food.id) %>
+      <%= f.fields_for :food_recipes, existing_food_recipe || @recipe.food_recipes.build(food_id: food.id) do |ff| %>
+        <%= ff.hidden_field :food_id, value: food.id %>
+        <div class="field">
+          <%= ff.label food.name %>
+          <%= ff.check_box :_destroy, checked: existing_food_recipe.present? %>
+          <%= ff.label :quantity %>
+          <%= ff.number_field :quantity %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  
+  
+  
+
 
   <div class="actions">
     <%= f.submit 'Create Recipe' %>

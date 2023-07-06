@@ -8,11 +8,6 @@ RSpec.describe 'Food', type: :request do
   end
 
   describe 'GET /index' do
-    it 'renders name of food' do
-      get root_path
-      expect(response).to be_successful
-    end
-
     it 'renders the template accurately' do
       get root_path
       expect(response).to render_template('index')

@@ -1,15 +1,29 @@
-<h1>Recipes</h1>
-<%= link_to "Add Recipe", new_recipe_path %>
-<% @recipes.each do |recipe| %>
-  <div class="recipe">
-    <h2><%= recipe.name %></h2>
-    <p><%= recipe.description %></p>
-    <p>
-      <%= link_to 'View', recipe_path(recipe) %>
-      <%= form_with(model: recipe, url: recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure you want to delete this recipe?' }) do |f| %>
-        <%= f.submit 'Remove', class: 'btn btn-danger' %>
+<div class="container">
+  <h1 class="recipe-header">Recipes</h1>
+
+  <div id="recipes">
+    <% if @recipes.empty? %>
+      <p class="recipe-paragraph">No recipes available! </p>
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <div class="a">
+          <div class="one">
+            <%= recipe.name %>
+            <% if can? :delete, recipe %>
+              <%= button_to "Destroy this recipe", recipe, method: :delete %>
+            <% end %>
+            <p>
+            <%= link_to "Show", recipe %>
+          </p>
+            </div>
+            
+          <div>
+            <p><%= recipe.description %></p>
+          </div>
+          
+    </div>
       <% end %>
-  
-  </p>
+  <% end %>
   </div>
-<% end %>
+  <%= link_to "Add Recipe", new_recipe_path %>
+</div>

@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  attr_accessor :public
+  #attr_accessor :public
 
   before_save :set_public
 

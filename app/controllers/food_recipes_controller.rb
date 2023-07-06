@@ -64,6 +64,12 @@ class FoodRecipesController < ApplicationController
     # @foods = Food.where(user_id: current_user.id)
   end
 
+  def remove_from_recipe
+    @food_recipe = FoodRecipe.find(params[:id])
+    @food_recipe.destroy
+    redirect_to @food_recipe.recipe, notice: 'Food removed from recipe.'
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

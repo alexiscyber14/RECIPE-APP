@@ -94,6 +94,20 @@ end
 
 
 
+def disassociate_food
+  @recipe = Recipe.find(params[:recipe_id])
+  food_recipe = @recipe.food_recipes.find_by(food_id: params[:food_id])
+  
+  if food_recipe
+    food_recipe.destroy
+    redirect_to recipe_path(@recipe), notice: 'Food disassociated successfully.'
+  else
+    redirect_to recipe_path(@recipe), alert: 'Food could not be disassociated from the recipe.'
+  end
+end
+
+
+
   
   private
 

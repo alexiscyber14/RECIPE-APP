@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'recipe_foods/destroy'
   resources :recipes do
     get 'generate_shopping_list', on: :member
+    member do
+      delete 'disassociate_food/:food_id', to: 'recipes#disassociate_food', as: 'disassociate_food'
+    end
   end
   resources :public_recipes
   resources :users
@@ -14,5 +17,5 @@ Rails.application.routes.draw do
   #get 'recipes/:id/food_recipes/new', to: 'food_recipes#new', as: 'new_food_recipe'
   #post 'recipes/:id/food_recipes/', to: 'food_recipes#create', as: 'food_recipes'
   #get 'general_shopping_list', to: 'food_recipes#index', as: 'general_shopping_list'
-  #put 'recipes/:id/toggle_button', to: 'recipes#toggle_action', as: 'toggle_action'
+  put 'recipes/:id/toggle_button', to: 'recipes#toggle_action', as: 'toggle_action'
 end

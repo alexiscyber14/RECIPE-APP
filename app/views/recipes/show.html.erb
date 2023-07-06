@@ -1,8 +1,22 @@
+<div>
+  <%= link_to "Back to recipes", recipes_path %>
+</div>
+
 <h1><%= @recipe.name %></h1>
 <p><%= @recipe.description %></p>
 <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
 <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
-<p>Public: <%= @recipe.public ? 'Yes' : 'No' %></p>
+
+<div class="public_boolean">
+  public: 
+  <%= button_to toggle_action_path(id: @recipe.id), method: :put, class: 'toggle-button' do %>
+    <% if @recipe[:public] %>
+      Public?: Yes
+    <% else %>
+      Public?: No
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to "Generate Shopping List", generate_shopping_list_recipe_path(@recipe), class: "btn btn-primary" %>
 
@@ -21,6 +35,6 @@
     <% end %>
     <p>Value: $<%= food.price %></p>
     <%= button_to "Modify", edit_food_path(food.id), method: :get, class: 'edit_btn' %>
-    <%= button_to "Remove", food, method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: "btn btn-danger" %>
-  </div>
+    <%= button_to "Remove", disassociate_food_recipe_path(recipe_id: @recipe.id, food_id: food_recipe.food_id), method: :delete, data: { confirm: 'Are you sure you want to disassociate this food from the recipe?' }, class: "btn btn-danger" %>
+    </div>
 <% end %>

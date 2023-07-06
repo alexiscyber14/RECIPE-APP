@@ -41,17 +41,11 @@
 
 -**[User Management: The project includes a User model with features for creating and managing user accounts. Users can register, log in, and perform actions specific to their account.]**
 
--**[Post Creation: Users can create new posts with a title and text content. Posts are associated with the user who created them, allowing for easy retrieval and organization.]**
+-**[Recipe Creation: Users can create new Recipes with a title and text content. Recipes are associated with the user who created them, allowing for easy retrieval and organization.]**
 
--**[Commenting System: Users can leave comments on posts, fostering engagement and discussion. Comments are associated with the post they belong to and include attributes such as the author's ID, text, and timestamps.]**
+-**[Share recipes: A user can create a recipe and make it public for others to see.]**
 
--**[Like Functionality: Users can express their appreciation for posts by liking them. Likes are associated with both the post and the user who initiated the like.]**
-
--**[Counters: The project incorporates counters to track the number of comments and likes for each post. These counters are automatically updated when new comments or likes are added, providing valuable insights into post popularity.]**
-
--**[Recent Comments: The project includes a custom method that retrieves the most recent comments for a given post. This feature allows users to view and engage with the latest discussions.]**
-
--**[Data Associations: The tables (Comment, User, Post, and Like) are linked through associations, enabling seamless navigation and retrieval of related data. These associations enhance the project's functionality and facilitate efficient data management.]**
+-**[Create foods:A user can create a list of foods and chose frrom these to create a recipe.]**
 
 -**[CRUD Operations: The project leverages the power of Ruby on Rails to perform Create, Read, Update, and Delete (CRUD) operations on the entities. This allows for easy management and manipulation of data throughout the application.]**
 
@@ -84,7 +78,7 @@ Example commands:
 
 ```sh
   cd my-folder
-  git clone https://github.com/alexiscyber14/ruby_on_rails_blog_app.git
+  git clone https://github.com/alexiscyber14/RECIPE-APP.git
 ```
 
 ### Install <a name="install">
@@ -115,6 +109,11 @@ rspec spec
 - LinkedIn:[@Alex_Ssenyoondo](https://www.linkedin.com/in/alex-software/)
 - wellfound:[@alexiscyber14](https://angel.co/u/alexander-senyondo)
 
+👤 **Yosef Geda**
+
+- GitHub: [@Yosefgeda](https://github.com/Yosefgeda)
+- LinkedIn:[linkedin](https://www.linkedin.com/in/yosefgeda)
+- wellfound:[Porfolio](https://yosefgeda.github.io/My-Portfolio/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -138,7 +137,7 @@ Here are some potential future features that can be added to enhance the functio
 
 Contributions, and feature requests are welcome!
 
-Feel free to check the [project](https://github.com/alexiscyber14/ruby_on_rails_blog_app.git).
+Feel free to check the [project](https://github.com/alexiscyber14/RECIPE-APP.git).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

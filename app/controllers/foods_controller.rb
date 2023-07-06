@@ -5,8 +5,6 @@ class FoodsController < ApplicationController
   def index
     # @foods = Food.all
     @foods = Food.accessible_by(current_ability)
-    @food_count = @foods.count
-    @food_cost = @foods.sum(:price)
   end
 
   # GET /foods/1 or /foods/1.json
@@ -33,6 +31,17 @@ class FoodsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /foods/1 or /foods/1.json
+  def update
+    @food = Food.find(params[:id])
+    Rails.logger.info("Current food is #{@current_food}")
+    if @food.update(food_params)
+      redirect_to foods_path
+    else
+      render :edit
+    end
+  end
+
   # DELETE /foods/1 or /foods/1.json
   def destroy
     @food = Food.find(params[:id])
@@ -45,6 +54,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:id, :name, :measurement_unit, :price, :quantity)
+    params.require(:food).permit(:id, :name, :measurement_unit, :quantity, :price)
   end
 end

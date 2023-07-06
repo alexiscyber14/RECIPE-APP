@@ -1,7 +1,7 @@
-<h2>Add Food</h2>
+<h1>Edit food</h1>
 
 <div class="container">
-<%= form_with model: Food.new, url: foods_path do |f| %>
+<%= form_for @current_food do |f| %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -23,7 +23,8 @@
     <%= f.text_field :price, autofocus: true %>
   </div>
   <div class="actions">
-    <%= f.submit "Add" %>
+    <%= f.submit "Save" %>
   </div>
 <% end %>
 </div>
+

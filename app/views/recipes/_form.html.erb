@@ -1,0 +1,39 @@
+<div class="recipe-form-wrapper"> <!-- Wrap the entire form with a div -->
+  <%= form_with(model: recipe) do |form| %>
+    <% if recipe.errors.any? %>
+      <div class="recipe-form">
+        <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+        <ul>
+          <% recipe.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    <% end %>
+    <div class="field">
+      <%= form.label :Name %><br />
+      <%= form.text_field :name, placeholder: "Enter recipe name" %>
+    </div>
+    <div class="field">
+      <%= form.label :"Preparation Time" %><br />
+      <%= form.text_field :preparation_time, placeholder: "Enter preparation time" %>
+    </div>
+    <div class="field">
+      <%= form.label :"Cooking Time" %><br />
+      <%= form.text_field :cooking_time, placeholder: "Enter cooking time" %>
+    </div>
+    <div class="field">
+      <%= form.label :Description %><br />
+      <%= form.text_area :description, placeholder: "Enter recipe description" %>
+    </div>
+    <div class="field">
+      <%= form.label :public %>
+      <%= form.check_box :public %>
+    </div>
+    <div class="field-actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div> <!-- Close the wrapping div -->

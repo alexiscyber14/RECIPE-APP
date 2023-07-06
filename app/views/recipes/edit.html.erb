@@ -1,30 +1,10 @@
-<h1>Edit Recipe</h1>
+<h1>Editing recipe</h1>
 
-<%= form_for @recipe do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
+<%= render "form", recipe: @recipe %>
 
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: 'form-control' %>
-  </div>
+<br>
 
-  <div class="form-group">
-    <%= f.label :preparation_time %>
-    <%= f.number_field :preparation_time, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :cooking_time %>
-    <%= f.number_field :cooking_time, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :public %>
-    <%= f.check_box :public %>
-  </div>
-
-  <%= f.submit 'Update Recipe', class: 'btn btn-primary' %>
-<% end %>
+<div>
+  <%= link_to "Show this recipe", @recipe %> |
+  <%= link_to "Back to recipes", recipes_path %>
+</div>

@@ -1,0 +1,11 @@
+<%= form_with(model: food_recipe) do |form| %>
+  <%= select_tag :category, options_for_select(@food_all.map { |food| food.name }) %>
+   <div class="field">
+      <%= form.label :quantity %><br />
+      <%= form.text_field :quantity, autofocus: true, autocomplete: "quantity" %>
+    </div>
+      <div class="actions">
+      <%= form.submit "Add" %>
+    </div>
+  <% end %>
+  

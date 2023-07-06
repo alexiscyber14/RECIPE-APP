@@ -12,4 +12,326 @@
  *
  *= require_tree .
  *= require_self
- */
+
+ /* Global styles */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap");
+
+:root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+}
+
+nav {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  width: fit-content;
+  background-color: #dedede;
+  padding: 0.3rem;
+}
+
+li > a {
+  text-decoration: none;
+  color: #333;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 5px;
+}
+
+a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Sign up form */
+
+.container {
+  width: 30rem;
+  height: 60vh;
+  margin: 2rem auto;
+  background-color: #d8d8d8;
+  border-radius: 5px;
+  text-align: center;
+  gap: 10px;
+}
+
+form {
+  /* width: 100%; */
+  margin: 1rem auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input:not([type="checkbox"]) {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+.checkbox-field {
+  margin: 0 auto;
+}
+
+.checkbox-input {
+  margin-right: 5px;
+}
+
+.checkbox-label {
+  margin-bottom: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: #f1f1f1;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.grid-item {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.new_food_wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.new_food {
+  border: 2px solid #e6e6e6;
+  background: #f1f1f1;
+  margin-left: 43rem;
+}
+
+.last {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.edit_btn,
+.delete_btn {
+  padding: 0 10px;
+  background-color: #55e1fd;
+  color: black;
+  font-weight: 600;
+  height: 2rem;
+  margin: 0;
+
+  /* display: block; */
+}
+
+h1 {
+  text-align: center;
+}
+
+.delete_btn {
+  background-color: orangered;
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.a {
+  border: 2px solid;
+  margin: 30px auto;
+  width: 70%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.recipe-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10rem;
+}
+
+.recipe_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.recipe-details p {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.second_table_recipes {
+  margin: 0 10rem;
+}
+
+.button_action {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+.button_to {
+  /* margin: 0; */
+
+  /* width: 100%; */
+  padding: 0;
+}
+
+.button_action button {
+  display: block;
+}
+
+.grid-container2 {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.grid-item2 {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.grid-container3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.grid-item3 {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.even-row {
+  background-color: #e6e5e5; /* Set the background color for even rows */
+}
+
+.odd-row {
+  background-color: #fff; /* Set the background color for odd rows */
+}
+
+.content:nth-child(even) {
+  display: flex;
+  background-color: #ebe8e8;
+  padding: 10px;
+  text-align: center;
+}
+
+.shopping_list {
+  margin: 2rem auto;
+  width: 50%;
+}
+
+.shopping_list_text {
+  text-align: center;
+}
+
+.things_to_buy {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.things_to_buy p {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.recipe-form {
+  margin-left: 10rem;
+}
+
+.field_action {
+  margin-left: 2rem;
+  width: 30%;
+}
+
+.recipe-header {
+  margin-left: 2rem;
+}
+
+.recipe-form-wrapper {
+  width: 30rem;
+  margin: 0 auto;
+  background-color: #d8d8d8;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button_action a {
+  margin-left: 2rem;
+}

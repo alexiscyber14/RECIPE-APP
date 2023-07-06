@@ -1,10 +1,46 @@
-<p style="color: green"><%= notice %></p>
+<h2><%= @recipe.name %></h2>
+<div class="recipe-details">
+  <div class="recipe_info">
+    <p>Preparation time: <%= @recipe.preparation_time %> hours</p>
+    <p>Cooking time: <%= @recipe.cooking_time %> hours</p>
+    <p><%= @recipe.description %></p>
+  </div>
+  <div class="public_boolean">
+  <%= button_to toggle_action_path(id: @recipe.id), method: :put, class: 'toggle-button' do %>
+  <% if @recipe[:public] %>
+    Toggle Off
+  <% else %>
+    Toggle On
+  <% end %>
+<% end %>
+  </div>
+</div>
 
-<%= render @recipe %>
+<div class="second_table_recipes">
+  <div class="button_action">
+  <%= button_to "Generate Shopping List", general_shopping_list_path, method: :get, class: 'button'%>
+ <%= button_to "Add Ingredient", new_food_recipe_path, method: :get, class: "button" %>
 
-<div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+  </div>
+  
+  <div class="grid-container2">
+    <div class="grid-item2"><strong>Food</strong></div>
+    <div class="grid-item2"><strong>Unit Price</strong></div>
+    <div class="grid-item2"><strong>Quantity</strong></div>
+    <div class="grid-item2"><strong>Actions</strong></div>
+    <% if @foods.empty?%>
+    <% else %>
+    <% @foods.each_with_index do |food, index| %>
+    <% row_class = index.even? ? 'even-row' : 'odd-row' %>
+    <div class="grid-item2 <%= row_class %>"><%= food.name%></div>
+    <div class="grid-item2 <%= row_class %>">$<%= food.price%></div>
+    <div class="grid-item2 <%= row_class %>"><%= food.quantity%><%=food.measurement_unit%></div>
+    <div class="grid-item2 last <%= row_class %>"><%= button_to "Edit", edit_food_path(food.id), method: :get, class: 'edit_btn' %>|<%= button_to "Delete", food_path(food.id), method: :delete, class: 'delete_btn' %></div>
+    <% end %>
+    <% end %>
+  </div>
+
+</div>
+<div class="button_action">
   <%= link_to "Back to recipes", recipes_path %>
-
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
 </div>

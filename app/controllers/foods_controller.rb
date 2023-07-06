@@ -33,9 +33,9 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
-    @current_food = Food.find(params[:id])
+    @food = Food.find(params[:id])
     Rails.logger.info("Current food is #{@current_food}")
-    if @current_food.update(food_params)
+    if @food.update(food_params)
       redirect_to foods_path
     else
       render :edit
@@ -54,6 +54,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:id, :name, :measurement_unit, :price, :quantity)
+    params.require(:food).permit(:id, :name, :measurement_unit, :quantity, :price)
   end
 end

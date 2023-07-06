@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
 
   belongs_to :user, foreign_key: :user_id
   has_many :food_recipes, dependent: :destroy
-  # has_many :food_recipes
+  has_many :food_recipes
   # Validations
   validates :name, presence: true
   validates :preparation_time, presence: true

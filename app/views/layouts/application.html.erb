@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Recipe</title>
+    <title>RecipeApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,16 +11,16 @@
   </head>
 
   <body>
-  <nav>
-  <ul>
-    <li><%= link_to "Food", foods_path %></li>
-    <li><a href="recipes">Recipe</a></li>
-    <li><a href="public_recipes">Public Recipe</a></li>
-    <li><a href="general_shopping_list">Shopping List</a></li>
-  </ul>
-</nav>
-<p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-  <%= yield %>
-</body>
+   <nav>
+    <ul>
+      <li><%= link_to "Food", foods_path %></li>
+      <li><a href="recipes">Recipe</a></li>
+      <li><a href="public_recipes">Public Recipe</a></li>
+      <li><a href="general_shopping_list">Shopping List</a></li>
+    </ul>
+  </nav>
+  <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
 </html>

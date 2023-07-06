@@ -1,6 +1,5 @@
 class CreateRecipes < ActiveRecord::Migration[7.0]
     def change
-=begin
       create_table :recipes do |t|
         t.string :name
         t.text :description
@@ -11,7 +10,6 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
   
         t.timestamps
       end
-=end
     end
   end
   

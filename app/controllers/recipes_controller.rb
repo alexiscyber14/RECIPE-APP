@@ -26,7 +26,6 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @create_recipe = recipe_params.merge(user_id: current_user.id)
-    # @modify_public = params[:recipe][:public] = recipe_params[:public].to_i.zero? ? false : true
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
     @recipe[:public] = @recipe[:public] != '0'
     respond_to do |format|
@@ -70,8 +69,6 @@ class RecipesController < ApplicationController
     return unless @recipe.save
 
     redirect_to recipe_path
-    # else
-    #   render :show, notice: "An error occured"
   end
 
   private
